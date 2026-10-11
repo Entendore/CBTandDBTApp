@@ -1,0 +1,132 @@
+<NavButton@Button>:
+    font_size: '14sp'
+    background_color: (0.20, 0.18, 0.32, 1)
+    color: (0.92, 0.91, 0.96, 1)
+    border: (0, 0, 0, 0)
+    background_normal: ''
+    background_down: ''
+    canvas.before:
+        Color:
+            rgba: (0.25, 0.22, 0.38, 1) if self.state == 'normal' else (0.35, 0.32, 0.52, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+<RootWidget>:
+    orientation: 'vertical'
+    ScreenManager:
+        id: sm
+        HomeScreen:
+            name: 'home'
+        CBTMenuScreen:
+            name: 'cbt_menu'
+        DBTMenuScreen:
+            name: 'dbt_menu'
+        SootheMenuScreen:
+            name: 'soothe_menu'
+        ToolsMenuScreen:
+            name: 'tools_menu'
+        CBTThoughtScreen:
+            name: 'cbt_thought'
+        CBTActivityScreen:
+            name: 'cbt_activity'
+        CBTCopingScreen:
+            name: 'cbt_coping'
+        CBTValuesScreen:
+            name: 'cbt_values'
+        DBTDiaryScreen:
+            name: 'dbt_diary'
+        DBTDEARMANScreen:
+            name: 'dbt_dearman'
+        DBTOppositeScreen:
+            name: 'dbt_opposite'
+        DBTSTOPScreen:
+            name: 'dbt_stop'
+        DBTTIPPScreen:
+            name: 'dbt_tipp'
+        SootheGroundScreen:
+            name: 'soothe_ground'
+        SootheSensesScreen:
+            name: 'soothe_senses'
+        SootheBreatheScreen:
+            name: 'soothe_breathe'
+        SootheMindfulScreen:
+            name: 'soothe_mindful'
+        ToolsMoodScreen:
+            name: 'tools_mood'
+        ToolsGratitudeScreen:
+            name: 'tools_gratitude'
+        ToolsHabitsScreen:
+            name: 'tools_habits'
+        ToolsSafetyScreen:
+            name: 'tools_safety'
+        ToolsCrisisScreen:
+            name: 'tools_crisis'
+
+    BoxLayout:
+        size_hint_y: 0.07
+        spacing: 2
+        padding: [2, 2, 2, 2]
+        canvas.before:
+            Color:
+                rgba: (0.10, 0.08, 0.18, 1)
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        NavButton:
+            text: 'Home'
+            on_press: root.go_to('home')
+        NavButton:
+            text: 'CBT'
+            on_press: root.go_to('cbt_menu')
+        NavButton:
+            text: 'DBT'
+            on_press: root.go_to('dbt_menu')
+        NavButton:
+            text: 'Soothe'
+            on_press: root.go_to('soothe_menu')
+        NavButton:
+            text: 'Tools'
+            on_press: root.go_to('tools_menu')
+
+<HomeScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 24
+        spacing: 16
+        Label:
+            text: 'MindTools Pro'
+            font_size: 38
+            size_hint_y: 0.18
+            color: (0.13, 0.11, 0.21, 1)
+            bold: True
+        ScrollView:
+            Label:
+                id: insights
+                text: 'Loading...'
+                markup: True
+                font_size: '18sp'
+                text_size: self.width, None
+                size_hint_y: None
+                height: self.texture_size[1]
+                halign: 'center'
+                valign: 'top'
+
+<MenuScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 15
+        Label:
+            id: title_label
+            font_size: 28
+            size_hint_y: 0.10
+            bold: True
+            color: (0.13, 0.11, 0.21, 1)
+        ScrollView:
+            GridLayout:
+                id: menu_grid
+                cols: 1
+                spacing: 12
+                size_hint_y: None
+                height: self.minimum_height
